@@ -83,6 +83,7 @@ edges = [ # (task1, task2)
 
 G.add_edges_from(edges) # Add edges to the graph
 
+# The critical path method (CPM) is used to determine the longest sequence of dependent tasks and the minimum project.
 def find_critical_path(G): # Find the critical path in the graph
     # Create a copy of the graph with negated weights
     G_neg = G.copy() # Copy the graph
@@ -105,6 +106,8 @@ for task in critical_path: # Iterate through the critical path
 print(f"Total Duration: {total_duration} time units") # Print the total duration
 
 # Breadth-First Search Implementation
+# This algorithm systematically explores the manufacturing process flow level by level and shows how tasks
+# are discovered in sequence. It starts from the 'Start' node and ends at the 'End' node.
 def perform_bfs(G, start='Start'): # Perform Breadth-First Search (BFS) traversal
     bfs_path = list(nx.bfs_edges(G, start)) # Perform BFS traversal
     print("\nBFS Traversal Path:") # Print the BFS traversal path
@@ -113,6 +116,10 @@ def perform_bfs(G, start='Start'): # Perform Breadth-First Search (BFS) traversa
     return bfs_path # Return the BFS path
 
 # Centrality Analysis Implementation
+# This algorithm calculates centrality measures to identify the most critical tasks based on their connections within
+# the workflow. It analyzes degree centrality and betweenness centrality to determine the most crucial nodes.
+# For Degree Centrality the values closer to 1 indicate higher centrality.
+# For Betweenness Centrality the values closer to 1 indicate crucial bottlenecks or integration points.
 def analyze_centrality(G): # Analyze centrality measures
     degree_centrality = nx.degree_centrality(G) # Calculate degree centrality
     betweenness_centrality = nx.betweenness_centrality(G) # Calculate betweenness centrality
